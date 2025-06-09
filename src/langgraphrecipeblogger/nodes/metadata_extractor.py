@@ -7,6 +7,10 @@ from src.langgraphrecipeblogger.utils.llm import llm
 
 
 def extract_metadata(state: RecipeState) -> Dict[str, Any]:
+
+    """
+    This agent extracts the metadata from the recipe to help filter out recipes and gives a short dietry info.
+    """
     prompt = ChatPromptTemplate.from_messages([
         SystemMessage(content="You are an expert recipe metadata extractor."),
         HumanMessage(content=(

@@ -7,6 +7,11 @@ from src.langgraphrecipeblogger.utils.llm import llm
 
 
 def scale_ingredient(state: RecipeState) -> Dict[str, Any]:
+
+    """
+    Generate list of ingredients for cooking recipes & scale them according to total headcounts or total people to be served.
+    """
+
     prompt = ChatPromptTemplate.from_messages([
         SystemMessage(content=(
             "You are a cooking assistant. You also help to scale ingredients "

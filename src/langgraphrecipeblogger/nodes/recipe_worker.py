@@ -7,6 +7,11 @@ from src.langgraphrecipeblogger.utils.llm import llm
 
 
 def get_recipe_instructions(state: RecipeState) -> Dict[str, Any]:
+
+    """
+    Generates a step by step instructions for cooking food.
+    """
+
     prompt = ChatPromptTemplate.from_messages([
         SystemMessage(content=(
             "You are a recipe-making instructor in a five-star hotel, "

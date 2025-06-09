@@ -10,8 +10,21 @@ Generate engaging, SEO-friendly, and humorous recipe blogs in multiple languages
 - 🤖 Automatically generates ingredients, instructions, and metadata via LangGraph worker nodes.
 - ✍️ Outputs a well-structured blog in Markdown with humor and SEO best practices.
 - 🌐 Multilingual support: English, Hindi, Marathi, Tamil, Gujarati.
-- 🧠 Built using LangChain, LangGraph, and Streamlit with
-- 🧪 Used Orchestrator-Worker Workflow.
+- 🔁 **Chat session memory**: View past generated blogs with inputs for reference and comparison.
+- 🧠 Built using LangChain, LangGraph, and Streamlit.
+- 🧪 Orchestrator-Worker Workflow for modular AI task management.
+
+---
+
+## 💬 Chat Session History
+
+The app uses Streamlit's session state (`st.session_state`) to maintain a **chat-like history of blog generations**. Every time a user submits a new recipe, their inputs and the generated blog are stored and displayed as part of the session history.
+
+This allows users to:
+- View and compare multiple recipe blogs without refreshing the page.
+- Maintain context for multiple generations during a session.
+
+This history can be extended for multi-turn memory in future using **LangGraph's persistent state flow**.
 
 ---
 

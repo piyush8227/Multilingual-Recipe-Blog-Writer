@@ -19,6 +19,8 @@ language = st.sidebar.selectbox("Preferred Language", ["English", "Hindi", "Mara
 if st.sidebar.button("✍️ Generate Blog"):
     with st.spinner("Cooking up your blog... 🍳"):
 
+        # User Input
+
         inputs = {
             "recipe_name": recipe_name,
             "headcount": headcount,
@@ -28,7 +30,7 @@ if st.sidebar.button("✍️ Generate Blog"):
         try:
             result = generate_blog_workflow.invoke(inputs)
 
-            # Append to session history
+            # Append Recipe blogs to session history
             st.session_state.chat_history.extend([
                 {"role": "user", "content": f"🍽️ **Recipe**: `{recipe_name}` | 👥 **Serves**: {headcount} | 🌐 **Language**: {language}"},
                 {"role": "assistant", "content": result["blog_post"]}
@@ -39,7 +41,7 @@ if st.sidebar.button("✍️ Generate Blog"):
         except Exception as e:
             st.error(f"Something went wrong: {str(e)}")
 
-# Display chat history
+# Display chat history in current session
 st.markdown("---")
 
 for i, msg in enumerate(st.session_state.chat_history):

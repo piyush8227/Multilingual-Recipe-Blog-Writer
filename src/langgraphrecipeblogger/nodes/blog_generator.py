@@ -6,6 +6,11 @@ from src.langgraphrecipeblogger.utils.llm import llm
 
 
 def generate_blog(state: RecipeState) -> Dict[str, Any]:
+
+    """
+    Generate recipe blogs that includes Recipe Metadata, Recipe Ingredients, Recipe instructions and conclusion.
+    """
+
     prompt = ChatPromptTemplate.from_messages([
         SystemMessage(content=(
             "You are an SEO expert and food blogger, "
@@ -53,7 +58,7 @@ def generate_blog(state: RecipeState) -> Dict[str, Any]:
         "content": blog_post
     }
 
-    # Append to existing history
+    # Appending to existing history
     updated_history = state.chat_history + [new_entry, new_response]
 
     return {"blog_post": response.content, "chat_history": updated_history}
