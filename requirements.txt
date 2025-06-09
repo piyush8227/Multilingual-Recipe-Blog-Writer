@@ -4,3 +4,5 @@ langchain-groq
 pydantic
 python-dotenv
 streamlit
+langchain
+IPython

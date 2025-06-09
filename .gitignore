@@ -1,1 +1,4 @@
 .env
+renv
+__pycache__
+go

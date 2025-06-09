@@ -1,8 +1,6 @@
 from typing import Dict, Any
 from langchain_core.messages import SystemMessage, HumanMessage
 from langchain.prompts import ChatPromptTemplate
-from IPython.display import Markdown
-
 from src.langgraphrecipeblogger.state.recipe_state import RecipeState
 from src.langgraphrecipeblogger.utils.llm import llm
 
@@ -43,7 +41,19 @@ def generate_blog(state: RecipeState) -> Dict[str, Any]:
         "ingredients": state.ingredients,
         "instructions": state.instructions
     })
+    
+    blog_post = response.content
 
-    # Wrap the raw Markdown so Jupyter/other frontends render it; 
-    # downstream code can strip Markdown if needed.
-    return {"blog_post": response.content}
+    new_entry = {
+        "role": "user",
+        "content": f"Generate blog for {state.recipe_name} in {state.language}"
+    }
+    new_response = {
+        "role": "assistant",
+        "content": blog_post
+    }
+
+    # Append to existing history
+    updated_history = state.chat_history + [new_entry, new_response]
+
+    return {"blog_post": response.content, "chat_history": updated_history}

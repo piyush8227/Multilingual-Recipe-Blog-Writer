@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import Optional
+from typing import Optional, List, Dict
 
 class RecipeState(BaseModel):
     recipe_name: str = Field(..., description="Name of the recipe which user wants to make.")
@@ -26,4 +26,9 @@ class RecipeState(BaseModel):
 
     blog_post: Optional[str] = Field(
         default=None, description="Final recipe blog post (Markdown)."
+    )
+
+    chat_history: List[Dict[str, str]] = Field(
+        default_factory = list,
+        description = "Accumulates past recipes and their generated blogs."
     )
